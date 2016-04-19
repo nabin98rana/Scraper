@@ -6,6 +6,7 @@
 package com.leapfrog.fiows.dao.impl;
 
 import com.leapfrog.fiows.dao.StudentDAO;
+import com.leapfrog.fiows.entity.Employee;
 import com.leapfrog.fiows.entity.Student;
 import com.leapfrog.fiows.util.CSVHandler;
 import java.io.IOException;
@@ -50,8 +51,13 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public void export(String fileName, String content) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void export(String fileName, String content) throws IOException {
+         StringBuilder builder=new StringBuilder();
+        for(Student std:studentList){
+        builder.append(std.toCSV());
+
+        }
+        CSVHandler.write(fileName, builder.toString());
     }
 
 }
