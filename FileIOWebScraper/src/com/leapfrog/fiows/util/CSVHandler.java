@@ -17,20 +17,22 @@ import java.util.List;
  * @author Navin
  */
 public class CSVHandler {
-    public static List<String> read(String fileName)throws IOException{
-        List<String> records=new ArrayList<>();
-        BufferedReader reader=new BufferedReader(new FileReader(fileName));
-        String line="";
-        
-        while((line=reader.readLine())!=null){
+
+    public static List<String> read(String fileName) throws IOException {
+        List<String> records = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line = "";
+
+        while ((line = reader.readLine()) != null) {
             records.add(line);
         }
         reader.close();
         return records;
     }
-    public static void write(String fileName, String content) throws IOException{
-    FileWriter writer=new FileWriter(fileName);
-    writer.write(content);
-    writer.close();
+
+    public static void write(String fileName, String content) throws IOException {
+        FileWriter writer = new FileWriter(fileName);
+        writer.write(content);
+        writer.close();
     }
 }

@@ -12,11 +12,14 @@ import java.util.List;
  *
  * @author Navin
  */
-public interface GenericDAO <T> {
+public interface GenericDAO<T> {
+
     void insert(T t);
-    List<T>getAll();
-    void loadFromFile(String fileName)throws IOException;
-    void export(String fileName, String content)throws IOException;
-    
-    
+
+    List<T> getAll();
+
+    void loadFromFile(String fileName) throws IOException;
+
+    void export(String fileName, String content) throws IOException;
+
 }

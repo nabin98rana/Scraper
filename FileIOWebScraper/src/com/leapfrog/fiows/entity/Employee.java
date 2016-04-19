@@ -11,7 +11,7 @@ package com.leapfrog.fiows.entity;
  */
 public class Employee {
     private int id;
-    private String firstName,lastName,email,contactNo;
+    private String firstName, lastName, email, contactNo;
     private boolean status;
 
     public Employee() {
@@ -78,8 +78,8 @@ public class Employee {
     public String toString() {
         return "Employee{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", contactNo=" + contactNo + ", status=" + status + '}';
     }
-    
-     public String toCSV() {
-        return  id + ", " + firstName + ", " + lastName + "," + email + ", " + contactNo + "," + status + "\r\n";
+
+    public String toCSV() {
+        return id + ", " + firstName + ", " + lastName + "," + email + ", " + contactNo + "," + status + "\r\n";
     }
 }

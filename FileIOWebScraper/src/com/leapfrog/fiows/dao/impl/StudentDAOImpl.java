@@ -7,18 +7,23 @@ package com.leapfrog.fiows.dao.impl;
 
 import com.leapfrog.fiows.dao.StudentDAO;
 import com.leapfrog.fiows.entity.Student;
+import com.leapfrog.fiows.util.CSVHandler;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  *
  * @author Navin
  */
 public class StudentDAOImpl implements StudentDAO {
-private List<Student> studentList=new ArrayList<>();
+
+    private List<Student> studentList = new ArrayList<>();
+
     @Override
     public void insert(Student t) {
-       studentList.add(t);
+        studentList.add(t);
     }
 
     @Override
@@ -27,14 +32,26 @@ private List<Student> studentList=new ArrayList<>();
     }
 
     @Override
-    public void loadFromFile(String fileName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void loadFromFile(String fileName) throws IOException {
+        CSVHandler.read(fileName).forEach(r -> {
+            StringTokenizer tokens = new StringTokenizer(r, ",");
+            if (tokens.countTokens() >= 6) {
+                Student std = new Student();
+                std.setId(Integer.parseInt(tokens.nextToken()));
+                std.setFirstName(tokens.nextToken());
+                std.setLastName(tokens.nextToken());
+                std.setEmail(tokens.nextToken());
+                std.setContactNo(tokens.nextToken());
+                std.setStatus(Boolean.parseBoolean(tokens.nextToken()));
+
+                insert(std);
+            }
+        });
     }
 
     @Override
     public void export(String fileName, String content) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-}
 
+}

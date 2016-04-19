@@ -18,7 +18,9 @@ import java.util.StringTokenizer;
  * @author Navin
  */
 public class EmployeeDAOImpl implements EmployeeDAO {
-private List<Employee> employeeList=new ArrayList<>();
+
+    private List<Employee> employeeList = new ArrayList<>();
+
     @Override
     public void insert(Employee t) {
         employeeList.add(t);
@@ -30,26 +32,31 @@ private List<Employee> employeeList=new ArrayList<>();
     }
 
     @Override
-    public void loadFromFile(String fileName)throws IOException {
-        CSVHandler.read(fileName).forEach(r->{
-            StringTokenizer tokens=new StringTokenizer(r,",");
-            if(tokens.countTokens()>=6){
-            Employee emp=new Employee();
-            emp.setId(Integer.parseInt(tokens.nextToken()));
-            emp.setFirstName(tokens.nextToken());
-            emp.setLastName(tokens.nextToken());
-            emp.setEmail(tokens.nextToken());
-            emp.setContactNo(tokens.nextToken());
-            emp.setStatus(Boolean.parseBoolean(tokens.nextToken()));
-            
-            insert(emp);
+    public void loadFromFile(String fileName) throws IOException {
+        CSVHandler.read(fileName).forEach(r -> {
+            StringTokenizer tokens = new StringTokenizer(r, ",");
+            if (tokens.countTokens() >= 6) {
+                Employee emp = new Employee();
+                emp.setId(Integer.parseInt(tokens.nextToken()));
+                emp.setFirstName(tokens.nextToken());
+                emp.setLastName(tokens.nextToken());
+                emp.setEmail(tokens.nextToken());
+                emp.setContactNo(tokens.nextToken());
+                emp.setStatus(Boolean.parseBoolean(tokens.nextToken()));
+
+                insert(emp);
             }
         });
     }
 
     @Override
-    public void export(String fileName, String content)throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void export(String fileName, String content) throws IOException {
+        StringBuilder builder=new StringBuilder();
+        for(Employee emp:employeeList){
+        builder.append(emp.toCSV());
+
+        }
+        CSVHandler.write(fileName, builder.toString());
     }
-    
+
 }

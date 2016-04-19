@@ -10,8 +10,9 @@ package com.leapfrog.fiows.entity;
  * @author Navin
  */
 public class Student {
- private int id;
-    private String firstName,lastName,email,contactNo;
+
+    private int id;
+    private String firstName, lastName, email, contactNo;
     private boolean status;
 
     public Student() {
@@ -78,8 +79,8 @@ public class Student {
     public String toString() {
         return "Student{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", contactNo=" + contactNo + ", status=" + status + '}';
     }
-    
-     public String toCSV() {
-        return  id + ", " + firstName + ", " + lastName + "," + email + ", " + contactNo + "," + status + "\r\n";
+
+    public String toCSV() {
+        return id + ", " + firstName + ", " + lastName + "," + email + ", " + contactNo + "," + status + "\r\n";
     }
 }

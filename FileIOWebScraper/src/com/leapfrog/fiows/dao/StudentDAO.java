@@ -11,6 +11,6 @@ import com.leapfrog.fiows.entity.Student;
  *
  * @author Navin
  */
-public interface StudentDAO extends GenericDAO<Student>{
-    
+public interface StudentDAO extends GenericDAO<Student> {
+
 }
